@@ -18,6 +18,8 @@ Live link of the project goes [here](https://share.streamlit.io/atinder01/speech
 
 ### FlowChart:
 
+![FlowChart](https://user-images.githubusercontent.com/67895402/134717714-7db8bc99-f36d-47e9-a0db-d1f59dcac8e0.png)
+
 ### Screenshots:
 
 ![image](https://user-images.githubusercontent.com/67895402/134714921-86f32d02-7fd6-4953-8e48-a9a1e9d52af8.png)

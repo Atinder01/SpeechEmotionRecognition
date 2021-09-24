@@ -72,3 +72,9 @@ else:
     st.write("#### For testing this website: ")
     st.write("* Upload any sample file or")
     st.write("* Try the demo app in sidebar")
+    
+st.text("")
+st.text("")    
+st.text("")
+st.text("")
+st.text("Made by Atinderpal Kaur")

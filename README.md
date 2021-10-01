@@ -24,6 +24,8 @@ Live link of the project goes [here](https://share.streamlit.io/atinder01/speech
 
 ![image](https://user-images.githubusercontent.com/67895402/134714921-86f32d02-7fd6-4953-8e48-a9a1e9d52af8.png)
 ![image](https://user-images.githubusercontent.com/67895402/134713909-d90c8479-bf0b-41c4-9ef8-db371f8aef6a.png)
+![image](https://user-images.githubusercontent.com/67895402/135554722-9a83f7c0-27de-40a4-b175-aa3a0da44270.png)
+
 ![image](https://user-images.githubusercontent.com/67895402/135554656-870c7b90-3516-4efe-8181-2838e408f74a.png)
 
 

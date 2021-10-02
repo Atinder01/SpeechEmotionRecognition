@@ -100,6 +100,9 @@ elif option=="Upload File":
 elif option=="Record Audio":
     st.sidebar.title("Duration")
     duration = st.sidebar.slider("Recording duration", 0.0, 3600.0, 3.0)
+    if st.button("Start Recording"):
+        with st.spinner("Recording..."):
+            record(duration)
     '''if file is None:
         st.write("### Please upload a wav file")
     else:

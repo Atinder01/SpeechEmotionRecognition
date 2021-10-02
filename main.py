@@ -5,7 +5,8 @@ import numpy as np
 import soundfile
 import pickle
 import librosa
-#import pyaudio
+import sounddevice as sd
+from scipy.io.wavfile import write
 
 st.write("""
 # PYTHON PROJECT
@@ -25,35 +26,6 @@ In this Python project, we recognize emotions from speech. The model delivers an
 image = Image.open("Speech_Recognition.jpg")
 st.image(image, use_column_width=True)
 loaded_model = pickle.load(open('finalized_model.sav', 'rb'))
-
-def record(duration):
-    filename = "recorded.wav"
-    chunk = 1024
-    FORMAT = pyaudio.paInt16
-    channels = 1
-    sample_rate = 44100
-    record_seconds = duration
-    p = pyaudio.PyAudio()
-    stream = p.open(format=FORMAT,
-    channels=channels,
-    rate=sample_rate,
-    input=True,
-    output=True,
-    frames_per_buffer=chunk)
-    frames = []
-    for i in range(int(44100 / chunk * record_seconds)):
-        data = stream.read(chunk)
-        frames.append(data)
-        stream.stop_stream()
-        stream.close()
-        p.terminate()
-        wf = wave.open(filename, "wb")
-        wf.setnchannels(channels)
-        wf.setsampwidth(p.get_sample_size(FORMAT))
-        wf.setframerate(sample_rate)
-        wf.writeframes(b"".join(frames))
-        wf.close() 
-        audio="recorded.wav"
         
 def extract_feature(file_name, mfcc, chroma, mel):
     with soundfile.SoundFile(file_name) as sound_file:
@@ -73,7 +45,7 @@ def extract_feature(file_name, mfcc, chroma, mel):
             result=np.hstack((result, mel))
     return result
 
-st.sidebar.write("Please Upload Audio File Here or Use Demo Of App Below using Preloaded Music")
+st.sidebar.write("How would ypu like to test our app?")
 option = st.sidebar.selectbox("",["Choose","Demo App","Upload File","Record Audio"])
 
 if option=="Demo App":
@@ -99,11 +71,24 @@ elif option=="Upload File":
         st.write("#### Prediction:")
         st.write("##### The emotion of sound is " + result[0])
 elif option=="Record Audio":
-    st.audio(data) 
+    fs = 44100  # Sample rate
+    seconds = 10  # Duration of recording
+    if (st.sidebar.button("Start recording")):
+        myrecording = sd.rec(int(seconds * fs), samplerate=fs, channels=2)
+        sd.wait()  # Wait until recording is finished
+        write('output.wav', fs, myrecording)
+        audio_bytes = open("output.wav", 'rb').read()
+        st.write("#### Input sound:")
+        st.audio(audio_bytes, format=f'audio/sav', start_time=0)
+        feature = np.array(extract_feature("03-01-01-01-01-02-02.wav", mfcc=True, chroma=True, mel=True)).reshape(1, -1)
+        result = loaded_model.predict(feature)
+        st.write("#### Prediction:")
+        st.write("##### The emotion of sound is " + result[0])
 else:
     st.write("#### For testing this website: ")
     st.write("* Upload any sample file or")
-    st.write("* Try the demo app in sidebar")
+    st.write("* Try the demo app or")
+    st.write("* Try live recording in sidebar")
     
 st.text("")
 st.text("")    

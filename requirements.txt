@@ -4,4 +4,3 @@ pydub==0.25.1
 streamlit==0.89.0
 SoundFile==0.10.3.post1
 Pillow==8.3.2
-pyaudio

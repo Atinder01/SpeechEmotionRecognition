@@ -76,8 +76,7 @@ elif option=="Record Audio":
     if (st.sidebar.button("Start recording")):
         myrecording = sd.rec(int(seconds * fs), samplerate=fs, channels=2)
         sd.wait()  # Wait until recording is finished
-        wav = AudioSegment.from_wav(myrecording)
-        wav.export("output.wav", format='wav')
+        write('output.wav', fs, myrecording)
         audio_bytes = open("output.wav", 'rb').read()
         st.write("#### Input sound:")
         st.audio(audio_bytes, format=f'audio/sav', start_time=0)

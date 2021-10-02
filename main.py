@@ -99,6 +99,7 @@ elif option=="Upload File":
         st.write("##### The emotion of sound is " + result[0])
 elif option=="Record Audio":
     st.sidebar.title("Duration")
+    duration = st.sidebar.slider("Recording duration", 0.0, 3600.0, 3.0)
     '''if file is None:
         st.write("### Please upload a wav file")
     else:

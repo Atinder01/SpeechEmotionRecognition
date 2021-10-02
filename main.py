@@ -98,8 +98,8 @@ elif option=="Upload File":
         st.write("#### Prediction:")
         st.write("##### The emotion of sound is " + result[0])
 elif option=="Record Audio":
-	with st.spinner("Recording..."):
-		record(duration)
+    with st.spinner("Recording..."):
+	record(duration)
     st.sidebar.title("Duration")
     duration = st.sidebar.slider("Recording duration", 0.0, 3600.0, 3.0)    
 else:

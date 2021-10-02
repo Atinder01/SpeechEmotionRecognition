@@ -25,6 +25,35 @@ image = Image.open("Speech_Recognition.jpg")
 st.image(image, use_column_width=True)
 loaded_model = pickle.load(open('finalized_model.sav', 'rb'))
 
+def record(duration):
+    filename = "recorded.wav"
+    chunk = 1024
+    FORMAT = pyaudio.paInt16
+    channels = 1
+    sample_rate = 44100
+    record_seconds = duration
+    p = pyaudio.PyAudio()
+    stream = p.open(format=FORMAT,
+    channels=channels,
+    rate=sample_rate,
+    input=True,
+    output=True,
+    frames_per_buffer=chunk)
+    frames = []
+    for i in range(int(44100 / chunk * record_seconds)):
+        data = stream.read(chunk)
+        frames.append(data)
+        stream.stop_stream()
+        stream.close()
+        p.terminate()
+        wf = wave.open(filename, "wb")
+        wf.setnchannels(channels)
+        wf.setsampwidth(p.get_sample_size(FORMAT))
+        wf.setframerate(sample_rate)
+        wf.writeframes(b"".join(frames))
+        wf.close() 
+        audio="recorded.wav"
+        
 def extract_feature(file_name, mfcc, chroma, mel):
     with soundfile.SoundFile(file_name) as sound_file:
         X = sound_file.read(dtype="float32")
@@ -44,7 +73,7 @@ def extract_feature(file_name, mfcc, chroma, mel):
     return result
 
 st.sidebar.write("Please Upload Audio File Here or Use Demo Of App Below using Preloaded Music")
-option = st.sidebar.selectbox("",["Choose","Demo App","Upload File"])
+option = st.sidebar.selectbox("",["Choose","Demo App","Upload File","Record Audio"])
 
 if option=="Demo App":
     audio_bytes = open("03-01-01-01-01-02-02.wav", 'rb').read()
@@ -68,6 +97,11 @@ elif option=="Upload File":
         result = loaded_model.predict(feature)
         st.write("#### Prediction:")
         st.write("##### The emotion of sound is " + result[0])
+elif option=="Record Audio":
+	with st.spinner("Recording..."):
+		record(duration)
+    st.sidebar.title("Duration")
+    duration = st.sidebar.slider("Recording duration", 0.0, 3600.0, 3.0)    
 else:
     st.write("#### For testing this website: ")
     st.write("* Upload any sample file or")

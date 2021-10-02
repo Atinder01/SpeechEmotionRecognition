@@ -98,8 +98,8 @@ elif option=="Upload File":
         st.write("#### Prediction:")
         st.write("##### The emotion of sound is " + result[0])
 elif option=="Record Audio":
-    file = st.sidebar.file_uploader("Please Upload Audio File Here",type=["wav"])
-    if file is None:
+    st.sidebar.title("Duration")
+    '''if file is None:
         st.write("### Please upload a wav file")
     else:
         wav = AudioSegment.from_wav(file)
@@ -110,7 +110,7 @@ elif option=="Record Audio":
         feature = np.array(extract_feature("extracted.wav", mfcc=True, chroma=True, mel=True)).reshape(1, -1)
         result = loaded_model.predict(feature)
         st.write("#### Prediction:")
-        st.write("##### The emotion of sound is " + result[0])
+        st.write("##### The emotion of sound is " + result[0])'''
 else:
     st.write("#### For testing this website: ")
     st.write("* Upload any sample file or")

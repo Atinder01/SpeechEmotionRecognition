@@ -1,8 +1,8 @@
-librosa==0.8.1
-numpy==1.20.0
-pydub==0.25.1
 streamlit==0.89.0
+pydub==0.25.1
+librosa==0.8.1
+scipy==1.7.1
+numpy==1.20.0
+sounddevice==0.4.2
 SoundFile==0.10.3.post1
 Pillow==8.3.2
-sounddevice
-scipy

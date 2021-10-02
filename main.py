@@ -5,6 +5,7 @@ import numpy as np
 import soundfile
 import pickle
 import librosa
+import pyaudio
 
 st.write("""
 # PYTHON PROJECT

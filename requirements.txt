@@ -6,4 +6,3 @@ numpy==1.20.0
 sounddevice==0.4.2
 SoundFile==0.10.3.post1
 Pillow==8.3.2
-libasound-dev

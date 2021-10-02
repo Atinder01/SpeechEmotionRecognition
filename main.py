@@ -5,7 +5,7 @@ import numpy as np
 import soundfile
 import pickle
 import librosa
-import pyaudio
+#import pyaudio
 
 st.write("""
 # PYTHON PROJECT
@@ -99,23 +99,7 @@ elif option=="Upload File":
         st.write("#### Prediction:")
         st.write("##### The emotion of sound is " + result[0])
 elif option=="Record Audio":
-    st.sidebar.title("Duration")
-    duration = st.sidebar.slider("Recording duration", 0.0, 3600.0, 3.0)
-    if st.button("Start Recording"):
-        with st.spinner("Recording..."):
-            record(duration)
-    '''if file is None:
-        st.write("### Please upload a wav file")
-    else:
-        wav = AudioSegment.from_wav(file)
-        wav.export("extracted.wav", format='wav')
-        audio_bytes = open("extracted.wav", 'rb').read()
-        st.write("#### Input sound:")
-        st.audio(audio_bytes, format=f'audio/sav', start_time=0)
-        feature = np.array(extract_feature("extracted.wav", mfcc=True, chroma=True, mel=True)).reshape(1, -1)
-        result = loaded_model.predict(feature)
-        st.write("#### Prediction:")
-        st.write("##### The emotion of sound is " + result[0])'''
+    st.audio(data) 
 else:
     st.write("#### For testing this website: ")
     st.write("* Upload any sample file or")

@@ -73,7 +73,7 @@ elif option=="Upload File":
 elif option=="Record Audio":
     fs = 44100  # Sample rate
     seconds = 10  # Duration of recording
-    sd.default.device = 6
+    sd.default.device = 8
     #st.write(sd.DeviceList())
     if (st.sidebar.button("Start recording")):
         myrecording = sd.rec(int(seconds * fs), samplerate=fs, channels=1)

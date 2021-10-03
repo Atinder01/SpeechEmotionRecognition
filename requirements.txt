@@ -6,3 +6,4 @@ SoundFile==0.10.3.post1
 streamlit==0.89.0
 numpy==1.20.0
 Pillow==8.3.2
+PyAudio==0.2.9

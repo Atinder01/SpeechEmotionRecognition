@@ -45,7 +45,7 @@ def extract_feature(file_name, mfcc, chroma, mel):
             result=np.hstack((result, mel))
     return result
 
-st.sidebar.write("How would ypu like to give input?")
+st.sidebar.write("How would you like to give input?")
 option = st.sidebar.selectbox("",["Choose","Demo App","Upload File","Record Audio"])
 
 if option=="Demo App":
@@ -74,7 +74,7 @@ elif option=="Record Audio":
     fs = 44100  # Sample rate
     seconds = 10  # Duration of recording
     if (st.sidebar.button("Start recording")):
-        myrecording = sd.rec(int(seconds * fs), samplerate=fs, channels=1)
+        myrecording = sd.rec(int(seconds * fs), samplerate=fs, channels=2)
         sd.wait()  
         write('output.wav', fs, myrecording)
         audio_bytes = open("output.wav", 'rb').read()

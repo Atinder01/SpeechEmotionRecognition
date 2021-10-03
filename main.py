@@ -74,13 +74,13 @@ elif option=="Record Audio":
     fs = 44100  # Sample rate
     seconds = 10  # Duration of recording
     if (st.sidebar.button("Start recording")):
-        myrecording = sd.rec(int(seconds * fs), samplerate=fs, channels=2)
+        myrecording = sd.rec(int(seconds * fs), samplerate=fs, channels=1)
         sd.wait()  
         write('output.wav', fs, myrecording)
         audio_bytes = open("output.wav", 'rb').read()
         st.write("#### Input sound:")
         st.audio(audio_bytes, format=f'audio/sav', start_time=0)
-        feature = np.array(extract_feature("03-01-01-01-01-02-02.wav", mfcc=True, chroma=True, mel=True)).reshape(1, -1)
+        feature = np.array(extract_feature("output.wav", mfcc=True, chroma=True, mel=True)).reshape(1, -1)
         result = loaded_model.predict(feature)
         st.write("#### Prediction:")
         st.write("##### The emotion of sound is " + result[0])

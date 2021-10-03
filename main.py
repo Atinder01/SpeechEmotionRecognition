@@ -74,7 +74,8 @@ elif option=="Record Audio":
     fs = 44100  # Sample rate
     seconds = 10  # Duration of recording
     if (st.sidebar.button("Start recording")):
-        myrecording = sd.rec(int(seconds * fs), samplerate=fs, channels=2)
+        info = query_devices(device)
+        myrecording = sd.rec(int(seconds * fs), samplerate=fs, channels=1)
         sd.wait()  
         write('output.wav', fs, myrecording)
         audio_bytes = open("output.wav", 'rb').read()
